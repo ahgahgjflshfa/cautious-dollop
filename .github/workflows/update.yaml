@@ -1,0 +1,34 @@
+name: Release Merged Rules
+
+on:
+  schedule:
+    cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on:ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3-11"
+
+      - name: Merge config
+        run: python scripts/merge.py
+
+      - name: Get current time
+        id: time
+        run: echo "value=$(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M:%S')" >> "$GITHUB_OUTPUT"
+
+      - name: Commit generated config
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "Update Shadowrocket config ${{ steps.time.outputs.value }}"
+          file_pattern: sr_ad_only_custom.conf

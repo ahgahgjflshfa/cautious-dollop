@@ -1,0 +1,4 @@
+# Custom Rules
+IP-CIDR,10.0.0.0/16,WG-HOME,no-resolve
+IP-CIDR,100.64.0.0/10,Tailscale,no-resolve
+
