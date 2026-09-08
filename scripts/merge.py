@@ -13,10 +13,18 @@ with open('custom-rules.txt', 'r') as file:
 # FINAL
 final = ['FINAL,DIRECT']
 
+# MITM
+mitm = ['',
+        '[MITM]',
+        'hostname = https://gs-loc.apple.com/,https://gs-loc-cn.apple.com/',
+        'enable = true'
+        ]
+
 # [Rule] line num
 n = config.index('[Rule]')
 
-custom_config = config[:n+1] + custom_rule + config[n+1:] + final
+custom_config = config[:n+1] + custom_rule + \
+    config[n+1:] + final + mitm
 
 with open('sr_ad_only_custom.conf', 'w+') as file:
     file.writelines('\n'.join(custom_config))
