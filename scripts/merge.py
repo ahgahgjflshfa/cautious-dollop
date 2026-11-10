@@ -10,21 +10,20 @@ config = urlopen(
 with open('custom-rules.txt', 'r') as file:
     custom_rule = file.read().splitlines()
 
-# FINAL
-final = ['FINAL,DIRECT']
+start_idx = custom_rule.index("# START")
+final_idx = custom_rule.index("# FINAL")
 
-# MITM
-mitm = ['',
-        '[MITM]',
-        'hostname = https://gs-loc.apple.com/,https://gs-loc-cn.apple.com/',
-        'enable = true'
-        ]
+# rules to be put before adblock rules
+start = custom_rule[start_idx+1:final_idx]
+
+# final
+final = custom_rule[final_idx+1:]
 
 # [Rule] line num
 n = config.index('[Rule]')
 
 custom_config = config[:n+1] + custom_rule + \
-    config[n+1:] + final + mitm
+    config[n+1:] + final
 
 with open('sr_ad_only_custom.conf', 'w+') as file:
     file.writelines('\n'.join(custom_config))
