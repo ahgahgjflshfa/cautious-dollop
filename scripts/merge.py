@@ -22,7 +22,7 @@ final = custom_rule[final_idx+1:]
 # [Rule] line num
 n = config.index('[Rule]')
 
-custom_config = config[:n+1] + custom_rule + \
+custom_config = config[:n+1] + start + \
     config[n+1:] + final
 
 with open('sr_ad_only_custom.conf', 'w+') as file:
