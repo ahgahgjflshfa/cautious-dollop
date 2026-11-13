@@ -2,7 +2,8 @@
 # START
 IP-CIDR,10.0.0.0/16,WG-HOME,no-resolve
 IP-CIDR,100.64.0.0/10,Tailscale,no-resolve
-DOMAIN-SUFFIX,www.esjzone.cc,DIRECT
+DOMAIN-SUFFIX,esjzone.cc,DIRECT
+DOMAIN-SUFFIX,wenku8.net,DIRECT
 
 # FINAL
 FINAL,OBSCURA
